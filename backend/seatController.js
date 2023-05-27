@@ -67,7 +67,6 @@ function getReservedSeats(req, res) {
 };
 function unreserveSeats(req, res) {
     const userName = req.body.username || '';
-    console.log(userName);
     if (userName) {
         const count = Seat.find({ username: userName }).count();
         Seat.updateMany({ username: userName }, { reserved: false, status: false, username: '' })

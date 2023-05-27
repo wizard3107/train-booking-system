@@ -34,9 +34,7 @@ export class BookingPageComponent implements OnInit, OnChanges {
     this.initSeats();
     this.getSeats();
   }
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-  }
+  ngOnChanges(changes: SimpleChanges): void {}
   initSeats() {
     const maxSeats = 80; // Total Seats
     const rows = 12; // Number of rows
@@ -95,7 +93,6 @@ export class BookingPageComponent implements OnInit, OnChanges {
         this.disableSelection =
           this.ticketsSelected.length === this.maxTicketCount ||
           this.ticketsSelected.length === selectedTickets;
-        console.log(this.disableSelection);
       }
     } else {
       alert('please select the no. of tickets');
@@ -124,8 +121,6 @@ export class BookingPageComponent implements OnInit, OnChanges {
     };
     if (this.ticketsSelected.length <= tickets) {
       const ticketsToBook = tickets - this.ticketsSelected.length;
-      console.log(this.reserveSeats(ticketsToBook));
-
       const seats: any = [
         ...this.ticketsSelected,
         ...this.reserveSeats(ticketsToBook),
@@ -210,7 +205,7 @@ export class BookingPageComponent implements OnInit, OnChanges {
         this.userTickets = res;
       });
     } else {
-      alert('please enter username');
+      alert('Please enter username');
     }
   }
   enableSelection() {
@@ -220,7 +215,6 @@ export class BookingPageComponent implements OnInit, OnChanges {
         this.seats[ele.row][ele.seat - 1].status = false;
       });
       this.ticketsSelected = [];
-      console.log(this.ticketsSelected);
     }
   }
   unreserveSeats() {
@@ -228,7 +222,7 @@ export class BookingPageComponent implements OnInit, OnChanges {
     if (username) {
       const payload = { username: username };
       this.bookingSystemService.unreserveSeats(payload).subscribe((res) => {
-        alert(res.message);
+        alert('Seats cancelled successfully!!');
         this.getSeats();
       });
     } else {
