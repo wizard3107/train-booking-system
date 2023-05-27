@@ -1,0 +1,117 @@
+@import '../variable';
+
+.nav{
+    background-color: $TB-nav-bg;   
+}
+.context-wrapper{
+    display: flex;
+    flex-direction: row;
+}
+.booking-details-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.input-field{
+    padding: $padding-2;
+    width: 70%;
+    border-radius: $border-radius-4;
+    
+    &.danger{
+        border:$danger-border;
+    }
+}
+.cancel-tickets{
+    margin-left:$margin-5;
+}
+.label-field{
+    padding: $padding-2;
+    width: 70%;
+    color: $TB-white;
+     &.danger{
+        color: $TB-red !important
+    }
+}
+.input-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin: $margin-3;
+}
+.submission{
+    width: 50%;
+    justify-content: center;
+    border-radius: $border-radius-8;
+    margin: $margin-5;
+    border: none;
+}
+.disabled{
+    cursor: not-allowed !important;
+}
+.user-details-wrapper{
+    width: 30%;
+    min-height: $size-400;
+    padding: $padding-2;
+    border-radius: $border-radius-6;
+    
+}
+.booking-details-wrapper{
+    width: 35%;
+    min-height: $size-500;
+    padding: $padding-2;
+    border-radius: $border-radius-6;
+    
+}
+
+.user-form{
+    margin: 15%;
+    border-radius: $border-radius-8;
+    padding: 5%;
+    background-image: $container-bg-radial;
+}
+.ticket-block{
+    border-radius: $border-radius-6; 
+    display: flex;
+    margin: 5%;
+    flex-direction: column;
+    align-items: center;
+    background-image: $container-bg-radial;
+}
+.seat{
+    background-color: $TB-white;
+    border-radius: $border-radius-4;
+    margin: $margin-3;
+    margin-top: $margin-3;
+    padding: $padding-5;
+    font-size: larger;
+    cursor: pointer;
+    &.booked{
+        background-color: $TB-selected !important;
+    }
+    &.reserved{
+        background-color:$TB-grey !important;
+    }
+    &.userReserved{
+        background-color:$TB-reserved !important;
+    }
+}
+.my-ticket-block{
+    border-radius: $border-radius-6;
+    padding: $padding-10;
+    color: $TB-white; 
+    max-height: $size-500;
+    overflow: auto;
+    width: 25%;
+    margin-top: 5%;
+    background-image: $container-bg-radial;
+    font-size: large;
+    font-weight: bolder;
+}
+.ticket-row{
+    margin: $margin-5;
+    display: grid;
+    grid-template-columns: repeat(7,$size-50);
+    column-gap: $margin-5;
+}

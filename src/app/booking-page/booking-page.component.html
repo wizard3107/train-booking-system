@@ -1,0 +1,62 @@
+<div class="nav">
+    <h1>Welcome to train booking system!!</h1>
+</div>
+<div class="context-wrapper">
+    <div class="user-details-wrapper">
+        <form [formGroup]="detailsForm" class="user-form">
+            <div class="input-wrapper">
+                <label class="label-field " for="userName" [ngClass]="{'danger':usernameError}">Username</label>
+                <input required minlength="2" class="input-field form-control" type="text" name="username"
+                    placeholder="Username" formControlName="username" [ngClass]="{'danger':usernameError}" />
+            </div>
+            <div class="input-wrapper">
+                <label class="label-field " for="email" [ngClass]="{'danger':emailError}">Email</label>
+                <input class="input-field form-control" type="email" name="email" placeholder="email"
+                    formControlName="email" [ngClass]="{'danger':emailError}" />
+            </div>
+            <div class="input-wrapper">
+                <label class="label-field " for="mobile" [ngClass]="{'danger':mobileError}">Mobile</label>
+                <input required minlength="10" maxlength="10" class="input-field form-control" type="text" name="mobile"
+                    placeholder="Mobile" formControlName="mobile" [ngClass]="{'danger':mobileError}" />
+            </div>
+            <div class="input-wrapper">
+                <label class="label-field " for="ticket" [ngClass]="{'danger':ticketsError}">No. of tickets</label>
+                <input required maxlength="1" class="input-field form-control" (keyup)="enableSelection()" type="number"
+                    name="ticket" placeholder="Tickets" value="tickets" [ngClass]="{'danger':ticketsError}"
+                    formControlName="ticket" />
+            </div>
+            <div class="input-wrapper">
+                <button class="btn btn-primary submission" (click)="onConfirmBooking()" type="submit">Reserve
+                    Tickets</button>
+                <span>
+                    <button class="btn btn-success" (click)="getMyTickets()">My Tickets</button>
+                    <button class="btn btn-danger cancel-tickets" (click)="unreserveSeats()">Cancel Tickets</button>
+                </span>
+            </div>
+        </form>
+
+    </div>
+    <div class="booking-details-wrapper">
+        <div class="loading" *ngIf="isLoading">Loading...</div>
+        <div class="ticket-block" *ngIf="!isLoading">
+            <ng-container>
+                <div *ngFor="let row of rows" class="ticket-row">
+                    <div class="seat" [ngClass]="{'booked': seat.status,'disabled': (disableSelection || seat.reserved), 'reserved': 
+                    seat.reserved}" *ngFor="let seat of seats[row]" (click)="onSeatSelect(row,seat.seat)">
+                        {{row}}-{{seat.seat}}
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+    <div *ngIf="userTickets.length" class="my-ticket-block">
+        <h2>
+            Your Seats
+        </h2>
+        <ol>
+            <div class="seat userReserved" *ngFor="let ticket of userTickets">
+                {{ticket.row}}-{{ticket.seat}}
+            </div>
+        </ol>
+    </div>
+</div>
