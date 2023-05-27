@@ -69,7 +69,7 @@ function unreserveSeats(req, res) {
     const userName = req.body.username || '';
     console.log(userName);
     if (userName) {
-        const count = Seat.find({ username:userName }).count();
+        const count = Seat.find({ username: userName }).count();
         Seat.updateMany({ username: userName }, { reserved: false, status: false, username: '' })
             .then(() => {
                 res.status(201).json({ message: `${count} tickets unreserved successfully` });
