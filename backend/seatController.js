@@ -30,6 +30,10 @@ async function reserveSeats(req, res) {
     // Check if the number of selected seats is within the allowed limit
     if (selectedSeats.length <= maxTicketsPerUser) {
         try {
+          const unavailableSeats = await Seat.find({ $or: selectedSeats.map(seat => ({ row: seat.row, seat: seat.seat })) }).exec();
+          if (unavailableSeats.length > 0) {
+          return res.status(400).json({ error: "One or more selected seats are already reserved." });
+          }
             Seat.updateMany({
                 $or: selectedSeats.map(seat => ({
                     row: seat.row,
